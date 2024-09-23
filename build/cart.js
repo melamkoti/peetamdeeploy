@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, productId, qty } = req.body;
     try {
@@ -130,4 +130,4 @@ router.delete("/delete/:id", (req, res) => __awaiter(void 0, void 0, void 0, fun
             .json({ message: "An error occurred while deleting the item" });
     }
 }));
-module.exports = router;
+exports.default = router;

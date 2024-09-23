@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const {
   upcomingEvents,
   oldEvents,
@@ -17,5 +17,4 @@ router.get("/", Events);
 router.delete("/:id", DeleteEvent);
 
 router.put("/:id", UpdateEvent);
-
-module.exports = router;
+export default router;

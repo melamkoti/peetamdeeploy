@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -12,4 +12,4 @@ router.get("/", async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error fetching activities" });
   }
 });
-module.exports = router;
+export default router;

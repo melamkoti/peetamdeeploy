@@ -6,35 +6,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const cors = require("cors");
+const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
-const Register = require("./register");
-const Activity = require("./activity");
-const Product = require("./Product");
-const EventsRoutes = require("./eventsRoutes");
-const Posts = require("./post");
-const Contact = require("./contactUs");
-const Cart = require("./cart");
+const activity_1 = __importDefault(require("./activity"));
+const product_1 = __importDefault(require("./product"));
+const eventsRoutes_1 = __importDefault(require("./eventsRoutes"));
+const post_1 = __importDefault(require("./post"));
+const contactUs_1 = __importDefault(require("./contactUs"));
+const cart_1 = __importDefault(require("./cart"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3001;
 const corsOptions = {
-    origin: ["http://127.0.0.1:5173", "http://localhost:5173"],
+    origin: ["*"],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
 };
-app.use(cors(corsOptions));
-app.use("/imagdata", express_1.default.static("imagdata"));
+app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());
 app.use(express_1.default.json());
-app.use("/user", Register);
-app.use("/activities", Activity);
-app.use("/product", Product);
-app.use("/event", EventsRoutes);
-app.use("/post", Posts);
-app.use("/contact", Contact);
-app.use("/cart", Cart);
+app.use("/activities", activity_1.default);
+app.use("/product", product_1.default);
+app.use("/event", eventsRoutes_1.default);
+app.use("/post", post_1.default);
+app.use("/contact", contactUs_1.default);
+app.use("/cart", cart_1.default);
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`);
 });
